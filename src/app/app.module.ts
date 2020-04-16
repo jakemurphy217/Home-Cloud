@@ -18,6 +18,7 @@ import {MatListModule} from '@angular/material/list';
 import {PostListComponent} from './posts/post-list/post-list.component';
 import {PostsService} from './posts/post.service';
 import {HttpClientModule} from '@angular/common/http';
+import {AppRoutingModule} from './app-routing.module';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     MatInputModule,

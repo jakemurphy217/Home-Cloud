@@ -1,7 +1,7 @@
 
-import {Component, Input, OnInit, OnDestroy} from "@angular/core";
-import {Post} from "../post.model";
-import {Subscription} from "rxjs";
+import {Component, Input, OnInit, OnDestroy} from '@angular/core';
+import {Post} from '../post.model';
+import {Subscription} from 'rxjs';
 import { PostsService } from '../post.service';
 @Component({
   selector: 'app-post-list',
@@ -23,7 +23,7 @@ constructor(public postsService: PostsService){}
 
 ngOnInit(){
 this.postsService.getPosts();
-this.postsSub = this.postsService.getpostUpdatedListener().subscribe((posts: Post[])=> {
+this.postsSub = this.postsService.getpostUpdatedListener().subscribe((posts: Post[]) => {
       this.posts = posts;
   });
 }
