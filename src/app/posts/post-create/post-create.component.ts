@@ -31,6 +31,9 @@ export class PostCreateComponent implements OnInit {
       }),
       content: new FormControl(null, {
         validators: [Validators.required]
+      }),
+      fileUpload: new FormControl(null, {
+        validators: [Validators.required]
       })
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -57,6 +60,15 @@ export class PostCreateComponent implements OnInit {
         this.postId = null;
       }
     });
+  }
+
+  onFilePicked(event: Event){
+    // takes html input and grabs the first file from the array
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({fileUpload: file});
+    this.form.get('fileUpload').updateValueAndValidity();
+    console.log(file);
+    console.log(this.form);
   }
 
   onSavePost() {
