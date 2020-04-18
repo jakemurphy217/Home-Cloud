@@ -14,11 +14,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {HeaderComponent} from './header/header.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import {PostListComponent} from './posts/post-list/post-list.component';
 import {PostsService} from './posts/post.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
+
 
 
 @NgModule({
@@ -39,6 +41,7 @@ import {AppRoutingModule} from './app-routing.module';
     MatToolbarModule,
     MatExpansionModule,
     MatListModule,
+    MatProgressSpinnerModule,
     HttpClientModule
   ],
   providers: [PostsService],
