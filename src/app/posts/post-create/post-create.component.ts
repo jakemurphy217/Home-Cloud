@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validator, Validators} from '@angular/forms';
 import {PostsService} from '../post.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Post} from '../post.model';
+// import {mimeType} from './mime-type.validator';
 
 @Component({
   selector: 'app-post-create',
@@ -18,6 +19,7 @@ export class PostCreateComponent implements OnInit {
   post: Post;
   Loading = false;
   form: FormGroup;
+  imagePreview: string;
 
   constructor(public postsService: PostsService,
               public route: ActivatedRoute
@@ -32,8 +34,10 @@ export class PostCreateComponent implements OnInit {
       content: new FormControl(null, {
         validators: [Validators.required]
       }),
-      fileUpload: new FormControl(null, {
-        validators: [Validators.required]
+      // to be changed to upload!! 'image'
+      upload: new FormControl(null, {
+        validators: [Validators.required],
+        // asyncValidators: [mimeType]
       })
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -65,20 +69,30 @@ export class PostCreateComponent implements OnInit {
   onFilePicked(event: Event){
     // takes html input and grabs the first file from the array
     const file = (event.target as HTMLInputElement).files[0];
-    this.form.patchValue({fileUpload: file});
-    this.form.get('fileUpload').updateValueAndValidity();
-    console.log(file);
-    console.log(this.form);
+    this.form.patchValue({upload: file});
+    this.form.get('upload').updateValueAndValidity();
+    // console.log(file.name, file.size, file.type);
+    // console.log(this.form);
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = (reader.result as string);
+    };
+    reader.readAsDataURL(file);
   }
 
   onSavePost() {
 
-    if (this.form.invalid) {
-      return;
-    }
+    // if (this.form.invalid) {
+    //   return;
+    // }
+
     this.Loading = true;
     if (this.mode === 'create') {
-      this.postsService.addPost(this.form.value.title, this.form.value.content);
+      this.postsService.addPost(
+        this.form.value.title,
+        this.form.value.content,
+        this.form.value.upload
+      );
     } else {
       this.postsService.updatePost(
         this.postId,

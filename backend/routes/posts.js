@@ -1,9 +1,44 @@
 const express = require("express");
 const Post = require('../models/post');
 const router = express.Router();
+const multer = require('multer');
+
+
+const MIME_TYPE_MAP = {
+  // picture types
+  'image/png' : 'png',
+  'image/jpeg': 'jpg',
+  'image/jpg' : 'jpg',
+  // ms word doc mime types
+  'application/msword':'doc',
+  'application/x-abiword':'abw',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document':'docx',
+
+
+};
+
+const storage = multer.diskStorage({
+
+  destination: (req, file, cb) => {
+
+    const isValid = MIME_TYPE_MAP[file.mimetype];
+    let error = new Error('invalid mime type on Server!!');
+    if (isValid){
+      error = null;
+    }
+    cb(null, 'backend/uploads')
+  },
+  filename: (req, file, cb) => {
+    const name = file.originalname.toLowerCase().split(' ').join('-');
+    const ext = MIME_TYPE_MAP[file.mimetype];
+    cb(null, name + '-' + Date.now() + '.' + ext);
+    // const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    // cb(null, file.fieldname + '-' + uniqueSuffix)
+  }
+});
 
 // /api/posts
-router.post("", (req, res, next) => {
+router.post("", multer({storage: storage}).single('upload'), (req, res, next) => {
   const post = new Post({
     title: req.body.title,
     content: req.body.content
