@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const postsRoutes = require('./routes/posts');
 const app = express();
@@ -20,6 +21,7 @@ db.on('error', err => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use('/uploads', express.static(path.join('backend/uploads')));
 
 app.use((req, res, next) => {
 

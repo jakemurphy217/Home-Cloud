@@ -10,6 +10,12 @@
 
     </mat-expansion-panel-header>
 
+    <div class="post-file">
+
+      <img [src]="post.filePath" [alt]="post.title">
+<!--      <p> {{post.filePath}}</p>-->
+    </div>
+
     <p>{{post.content}} </p>
 
     <mat-action-row>

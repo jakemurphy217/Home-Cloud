@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validator, Validators} from '@angular/forms';
 import {PostsService} from '../post.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Post} from '../post.model';
+
 // import {mimeType} from './mime-type.validator';
 
 @Component({
@@ -50,12 +51,14 @@ export class PostCreateComponent implements OnInit {
           this.post = {
             id: postData._id,
             title: postData.title,
-            content: postData.content
+            content: postData.content,
+            filePath: postData.filePath
           };
 
           this.form.setValue({
             title: this.post.title,
-            content: this.post.content
+            content: this.post.content,
+            upload: this.post.filePath
           });
 
         });
@@ -66,7 +69,7 @@ export class PostCreateComponent implements OnInit {
     });
   }
 
-  onFilePicked(event: Event){
+  onFilePicked(event: Event) {
     // takes html input and grabs the first file from the array
     const file = (event.target as HTMLInputElement).files[0];
     this.form.patchValue({upload: file});
@@ -97,7 +100,8 @@ export class PostCreateComponent implements OnInit {
       this.postsService.updatePost(
         this.postId,
         this.form.value.title,
-        this.form.value.content
+        this.form.value.content,
+        this.form.value.upload
       );
     }
     this.form.reset();

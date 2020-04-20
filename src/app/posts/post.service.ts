@@ -22,7 +22,8 @@ export class PostsService {
           return {
             title: post.title,
             content: post.content,
-            id: post._id
+            id: post._id,
+            filePath: post.filePath
           };
         });
       }))
@@ -38,7 +39,7 @@ export class PostsService {
   }
 
   getPost(id: string) {
-    return this.http.get<{ _id: string; title: string; content: string }>('http://localhost:3000/api/posts/' + id);
+    return this.http.get<{ _id: string; title: string; content: string, filePath: string }>('http://localhost:3000/api/posts/' + id);
   }
 
 
@@ -50,12 +51,15 @@ export class PostsService {
     postData.append('upload', upload, title);
 
     this.http
-      .post<{ message: string, postId: string }>(
+      .post<{ message: string, post: Post }>(
         'http://localhost:3000/api/posts', postData)
       .subscribe((responseData) => {
         // console.log(responseData.message);
         const post: Post = {
-          id: responseData.postId, title, content
+          id: responseData.post.id,
+          title,
+          content,
+          filePath: responseData.post.filePath
         };
 
         this.posts.push(post);
@@ -65,18 +69,40 @@ export class PostsService {
   }
 
 
-  updatePost(id: string, title: string, content: string) {
-    const post: Post = {id, title, content};
-    this.http.put('http://localhost:3000/api/posts/' + id, post)
-      .subscribe(response => console.log(response));
+  updatePost(id: string, title: string, content: string, upload: File | string) {
+    let postData: Post | FormData;
+    if (typeof (upload) === 'object') {
+      postData = new FormData();
+      postData.append('id', id);
+      postData.append('title', title);
+      postData.append('content', content);
+      postData.append('upload', upload, title);
+    } else {
+      postData = {
+        id,
+        title,
+        content,
+        filePath: upload
+      };
+    }
+    // const post: Post = {id, title, content, filePath: null};
+    this.http.put('http://localhost:3000/api/posts/' + id, postData)
+      .subscribe(response => {
 
     const updatedPosts = [...this.posts];
-    const oldPostIndex = updatedPosts.findIndex(p => p.id === post.id);
+    const oldPostIndex = updatedPosts.findIndex(p => p.id === id);
+    const post: Post = {
+      id,
+      title,
+      content,
+      filePath: "response.filePath"
+    };
     updatedPosts[oldPostIndex] = post;
     this.posts = updatedPosts;
     this.postsUpdated.next([...this.posts]);
     this.router.navigate(['/']);
-  }
+  });
+}
 
   deletePost(postId: string) {
     this.http.delete('http://localhost:3000/api/posts/' + postId)
