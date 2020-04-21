@@ -19,6 +19,7 @@ import {PostListComponent} from './posts/post-list/post-list.component';
 import {PostsService} from './posts/post.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -41,7 +42,8 @@ import {AppRoutingModule} from './app-routing.module';
     MatExpansionModule,
     MatListModule,
     MatProgressSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatPaginatorModule
   ],
   providers: [PostsService],
   bootstrap: [AppComponent]
