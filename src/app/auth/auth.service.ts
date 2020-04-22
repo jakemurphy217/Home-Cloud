@@ -1,17 +1,28 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AuthData} from './auth-data.model';
+import {Subject} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
-
+  // authentication information/status true or false
+  private authStatusListener = new Subject<boolean>();
   private token: string;
+  isAuthenticated = false;
 
   constructor(private http: HttpClient) {
   }
 
-  getToken(){
+  getToken() {
     return this.token;
+  }
+
+  getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
+  }
+
+  getIsAuth() {
+    return this.isAuthenticated;
   }
 
   crateUser(email: string, password: string) {
@@ -25,12 +36,16 @@ export class AuthService {
 
   login(email: string, password: string) {
     const authData: AuthData = {email, password};
-    this.http.post<{token: string}>('http://localhost:3000/api/user/login', authData)
+    this.http.post<{ token: string }>('http://localhost:3000/api/user/login', authData)
       .subscribe(response => {
         // logs token
         console.log(response);
         const token = response.token;
         this.token = token;
+        if (token) {
+          this.isAuthenticated = true;
+          this.authStatusListener.next(true);
+        }
       });
   }
 
