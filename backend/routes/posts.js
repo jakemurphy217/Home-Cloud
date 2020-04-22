@@ -2,6 +2,7 @@ const express = require("express");
 const Post = require('../models/post');
 const router = express.Router();
 const multer = require('multer');
+const checkAuth = require('../middleware/check-auth');
 
 
 const MIME_TYPE_MAP = {
@@ -37,7 +38,11 @@ const storage = multer.diskStorage({
 });
 
 // /api/posts
-router.post("", multer({storage: storage}).single('upload'), (req, res, next) => {
+router.post("",
+  checkAuth,
+  multer({storage: storage}).single('upload'),
+  (req, res, next) => {
+
   // getting the server url
   const url = req.protocol + '://' + req.get('host');
   const post = new Post({
@@ -64,7 +69,7 @@ router.post("", multer({storage: storage}).single('upload'), (req, res, next) =>
 });
 
 // /api/posts/:id
-router.put("/:id",
+router.put("/:id", checkAuth,
   multer({storage: storage}).single('upload'),
   (req, res, next) => {
     // console.log(req.file)
@@ -126,7 +131,7 @@ router.get("/:id", (req, res, next) => {
 });
 
 // /api/posts/id
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id",checkAuth, (req, res, next) => {
   console.log(req.params.id);
   Post.deleteOne({_id: req.params.id}).then(result => {
     console.log(result);
