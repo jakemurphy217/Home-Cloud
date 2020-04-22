@@ -17,11 +17,12 @@ import {MatListModule} from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {PostListComponent} from './posts/post-list/post-list.component';
 import {PostsService} from './posts/post.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {LoginComponent} from './auth/login/login.component';
 import {SignupComponent} from './auth/signup/signup.component';
+import {AuthInterceptor} from './auth/auth-interceptor';
 
 
 
@@ -50,7 +51,7 @@ import {SignupComponent} from './auth/signup/signup.component';
     HttpClientModule,
     MatPaginatorModule
   ],
-  providers: [PostsService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

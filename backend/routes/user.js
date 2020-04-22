@@ -50,6 +50,7 @@ router.post('/login', (req, res, next) => {
       const token = jwt.sign({email: fetchedUser.email, userId: fetchedUser._id},
         "secret_for_me_on_server",
         {expiresIn: "1h"}
+
       );
       res.status(200).json({
         token: token
@@ -59,7 +60,7 @@ router.post('/login', (req, res, next) => {
       return res.status(401).json({
         message: 'authentication denied',
       });
-    })
+    });
 
 });
 

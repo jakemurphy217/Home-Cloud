@@ -55,7 +55,7 @@ router.post("",
     res.status(201).json({
       message: "Post was created successfully!!",
       post: {
-        // using spread operater to copy the created object
+        // using spread operate to copy the created object
         ...createdPost,
         id: createdPost._id
 
