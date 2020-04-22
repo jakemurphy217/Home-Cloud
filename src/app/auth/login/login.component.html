@@ -21,15 +21,15 @@
              ngModel
              placeholder="Password"
              #passwordInput="ngModel"
-             required
-      >
+             required>
       <mat-error *ngIf="passwordInput.invalid">Please Enter a Valid Password</mat-error>
     </mat-form-field>
 
 <!--    login button-->
     <button mat-raised-button
             color="accent"
-            type="submit">Login
-    </button>
+            type="submit"
+            *ngIf="!Loading">Login</button>
+
   </form>
 </mat-card>
