@@ -12,3 +12,8 @@ ul{
 .spacer{
   flex: 1 1 auto;
 }
+
+/*flex box to align nav items*/
+ul{
+  display: flex;
+}
