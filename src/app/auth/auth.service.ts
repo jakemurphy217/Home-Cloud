@@ -45,12 +45,16 @@ private tokenTimer: any;
         this.token = token;
         if (token) {
           const expiresInDuration = response.expiresIn;
-          console.log(expiresInDuration); // response in sec's for token duration
+          // console.log(expiresInDuration); // response in sec's for token duration
           this.tokenTimer = setTimeout(() => {
             this.logout();
-          }, expiresInDuration ); // mil secs to sec
+          }, expiresInDuration * 1000); // mil secs to sec
           this.isAuthenticated = true;
           this.authStatusListener.next(true);
+          const currentTime = new Date();
+          const expirationDate = new Date(currentTime.getTime() + expiresInDuration * 1000);
+          console.log(expirationDate);
+          this.saveAuthData(token, expirationDate);
           this.router.navigate(['/']);
         }
       });
@@ -64,6 +68,15 @@ private tokenTimer: any;
     this.router.navigate(['/']);
   }
 
+  private saveAuthData(token: string, expirationDate: Date) {
+      localStorage.setItem('token', token);
+      localStorage.setItem('expiration', expirationDate.toISOString());
+  }
+
+  private clearAuthData(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiration');
+  }
 
 
 }
