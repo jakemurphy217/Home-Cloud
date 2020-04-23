@@ -8,7 +8,7 @@
     <mat-form-field>
       <input matInput type="text"
              formControlName="title"
-             placeholder="Posts Title*">
+             placeholder="Title">
       <mat-error *ngIf="form.get('title').invalid">please enter a valid title</mat-error>
 
     </mat-form-field>
@@ -26,13 +26,13 @@
 
       <textarea matInput rows="6"
                 formControlName="content"
-                placeholder="Posts Content"></textarea>
-      <mat-error *ngIf="form.get('content').invalid">Content is invalid</mat-error>
+                placeholder="Upload Description"></textarea>
+      <mat-error *ngIf="form.get('content').invalid">Description is Invalid</mat-error>
 
     </mat-form-field>
 
     <button mat-raised-button color="accent"
-            type="submit">Save post
+            type="submit">Upload
     </button>
 
   </form>

@@ -1,19 +1,19 @@
 <mat-toolbar color="primary">
 
   <span>
-    <a routerLink="/">MyMessages</a>
+    <a routerLink="/">HomeCloud</a>
   </span>
 
   <span class="spacer"></span>
   <ul>
     <li *ngIf="userIsAuthenticated">
-      <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Posts</a>
+      <a mat-button routerLink="/create" routerLinkActive="mat-accent">Upload</a>
     </li>
     <li *ngIf="!userIsAuthenticated">
       <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
     </li>
     <li *ngIf="!userIsAuthenticated">
-      <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
+      <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Sign up</a>
     </li>
     <li *ngIf="userIsAuthenticated">
       <button mat-button (click)="onLogout()">Logout</button>
