@@ -46,7 +46,13 @@ export class PostsService {
   }
 
   getPost(id: string) {
-    return this.http.get<{ _id: string; title: string; content: string, filePath: string }>('http://localhost:3000/api/posts/' + id);
+    return this.http.get<{
+      _id: string;
+      title: string;
+      content: string;
+      filePath: string;
+      creator: string;
+    }>('http://localhost:3000/api/posts/' + id);
   }
 
 
@@ -90,7 +96,8 @@ export class PostsService {
         id,
         title,
         content,
-        filePath: upload
+        filePath: upload,
+        creator: null
       };
     }
     // const post: Post = {id, title, content, filePath: null};

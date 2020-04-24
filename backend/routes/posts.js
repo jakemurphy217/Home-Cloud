@@ -84,7 +84,8 @@ router.put("/:id", checkAuth,
       _id: req.body.id,
       title: req.body.title,
       content: req.body.content,
-      filePath: filePath
+      filePath: filePath,
+      creator: req.userData.userId
     })
     console.log(post)
     Post.updateOne({_id: req.params.id, creator: req.userData.userId}, post).then(result => {
@@ -99,7 +100,6 @@ router.put("/:id", checkAuth,
           message: 'update not successful, Not Authorized!!'
         });
       }
-      res.status(200).json({message: "Post Updated successfully!!"});
     });
   });
 
