@@ -25,7 +25,8 @@ export class PostsService {
               title: post.title,
               content: post.content,
               id: post._id,
-              filePath: post.filePath
+              filePath: post.filePath,
+              creator: post.creator
             };
           }),
           maxPosts: postData.maxPosts

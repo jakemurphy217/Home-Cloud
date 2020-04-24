@@ -43,30 +43,31 @@ router.post("",
   multer({storage: storage}).single('upload'),
   (req, res, next) => {
 
-  // getting the server url
-  const url = req.protocol + '://' + req.get('host');
-  const post = new Post({
-    title: req.body.title,
-    content: req.body.content,
-    filePath: url + '/uploads/' + req.file.filename
-  });
-  post.save().then(createdPost => {
-    // console.log(createdPost);
-    res.status(201).json({
-      message: "Post was created successfully!!",
-      post: {
-        // using spread operate to copy the created object
-        ...createdPost,
-        id: createdPost._id
+    // getting the server url
+    const url = req.protocol + '://' + req.get('host');
+    const post = new Post({
+      title: req.body.title,
+      content: req.body.content,
+      filePath: url + '/uploads/' + req.file.filename,
+      creator: req.userData.userId
+    });
+    post.save().then(createdPost => {
+      // console.log(createdPost);
+      res.status(201).json({
+        message: "Post was created successfully!!",
+        post: {
+          // using spread operate to copy the created object
+          ...createdPost,
+          id: createdPost._id
 
-        // id: createdPost._id,
-        // title: createdPost.title,
-        // content: createdPost.content,
-        // filePath: createdPost.filePath
-      }
+          // id: createdPost._id,
+          // title: createdPost.title,
+          // content: createdPost.content,
+          // filePath: createdPost.filePath
+        }
+      });
     });
   });
-});
 
 // /api/posts/:id
 router.put("/:id", checkAuth,
@@ -86,8 +87,18 @@ router.put("/:id", checkAuth,
       filePath: filePath
     })
     console.log(post)
-    Post.updateOne({_id: req.params.id}, post).then(result => {
-      console.log(result);
+    Post.updateOne({_id: req.params.id, creator: req.userData.userId}, post).then(result => {
+      // console.log(result);
+      // nModified is equal 1 when the creator has auth and 0 when not
+      if (result.nModified > 0){
+        res.status(200).json({
+          message: 'update was successful'
+        });
+      }else {
+        res.status(401).json({
+          message: 'update not successful, Not Authorized!!'
+        });
+      }
       res.status(200).json({message: "Post Updated successfully!!"});
     });
   });
@@ -131,11 +142,20 @@ router.get("/:id", (req, res, next) => {
 });
 
 // /api/posts/id
-router.delete("/:id",checkAuth, (req, res, next) => {
+router.delete("/:id", checkAuth, (req, res, next) => {
   console.log(req.params.id);
-  Post.deleteOne({_id: req.params.id}).then(result => {
+  Post.deleteOne({_id: req.params.id, creator: req.userData.userId}).then(result => {
     console.log(result);
-    res.status(200).json({message: 'Post deleted!'});
+    // nModified is equal 1 when the creator has auth and 0 when not
+    if (result.n > 0){
+      res.status(200).json({
+        message: 'Delete was successful'
+      });
+    }else {
+      res.status(401).json({
+        message: 'update not successful, Not Authorized!!'
+      });
+    }
   });
 });
 
