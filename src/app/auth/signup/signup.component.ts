@@ -20,7 +20,10 @@ export class SignupComponent {
     return;
   }
   this.Loading = true;
-  this.authService.crateUser(form.value.email, form.value.password);
+  this.authService.crateUser(form.value.email, form.value.password).subscribe(null,
+    error => {
+    this.Loading = false;
+    });
 
   }
 }

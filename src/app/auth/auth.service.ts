@@ -34,16 +34,12 @@ export class AuthService {
 
   crateUser(email: string, password: string) {
     const authData: AuthData = {email, password};
-
-    this.http.post('http://localhost:3000/api/user/signup', authData)
-      .subscribe(response => {
-        console.log(response);
-      });
+    return this.http.post('http://localhost:3000/api/user/signup', authData);
   }
 
   autoAuthUser() {
     const authInformation = this.getAuthData();
-    if (!authInformation){
+    if (!authInformation) {
       return;
     }
     const currentTime = new Date();
