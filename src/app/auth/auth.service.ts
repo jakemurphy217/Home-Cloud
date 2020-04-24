@@ -34,7 +34,14 @@ export class AuthService {
 
   crateUser(email: string, password: string) {
     const authData: AuthData = {email, password};
-    return this.http.post('http://localhost:3000/api/user/signup', authData);
+    this.http
+      .post('http://localhost:3000/api/user/signup', authData)
+      .subscribe(() => {
+        this.router.navigate(['/']);
+      }, error => {
+        this.authStatusListener.next(false);
+      });
+
   }
 
   autoAuthUser() {
