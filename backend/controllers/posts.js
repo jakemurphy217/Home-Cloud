@@ -1,6 +1,6 @@
 const Post = require('../models/post');
 
-
+// CREATING A POST
 exports.createPost = (req, res, next) => {
 
   // getting the server url
@@ -19,10 +19,6 @@ exports.createPost = (req, res, next) => {
         // using spread operate to copy the created object
         ...createdPost,
         id: createdPost._id
-        // id: createdPost._id,
-        // title: createdPost.title,
-        // content: createdPost.content,
-        // filePath: createdPost.filePath
       }
     });
   })
@@ -32,7 +28,9 @@ exports.createPost = (req, res, next) => {
       })
     })
 };
+// END OF CREATING A POST
 
+// START OF UPDATING A POST
 exports.updatePost = (req, res, next) => {
   // console.log(req.file)
   let filePath = req.body.filePath;
@@ -52,7 +50,7 @@ exports.updatePost = (req, res, next) => {
   Post.updateOne({_id: req.params.id, creator: req.userData.userId}, post).then(result => {
     // console.log(result);
     // nModified is equal 1 when the creator has auth and 0 when not
-    if (result.nModified > 0) {
+    if (result.n > 0) {
       res.status(200).json({
         message: 'update was successful'
       });
@@ -68,7 +66,9 @@ exports.updatePost = (req, res, next) => {
       });
     })
 };
+// END OF UPDATING A POST
 
+// START OF GETTING A POSTS
 exports.getPosts = (req, res, next) => {
   //http://localhost:3000/api/posts?pagesize=2&page=1&something=cool
   console.log(req.query);
@@ -99,7 +99,9 @@ exports.getPosts = (req, res, next) => {
       });
     });
 };
+// END OF GETTING A POSTS
 
+// START OF GETTING A SINGULAR POST
 exports.getPost = (req, res, next) => {
   Post.findById(req.params.id).then(post => {
     if (post) {
@@ -114,7 +116,9 @@ exports.getPost = (req, res, next) => {
       });
     });
 };
+// END OF GETTING A SINGLE POST
 
+// START OF DELETING A POST
 exports.deletePost = (req, res, next) => {
   console.log(req.params.id);
   Post.deleteOne({_id: req.params.id, creator: req.userData.userId}).then(result => {
@@ -136,5 +140,6 @@ exports.deletePost = (req, res, next) => {
       });
     });
 }
+// END OF DELETING A POST
 
 

@@ -2,7 +2,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-
+// CREATING AN ACCOUNT
 exports.createUser = (req, res, next) => {
   bcrypt.hash(req.body.password, 10)
     .then(hash => {
@@ -11,13 +11,12 @@ exports.createUser = (req, res, next) => {
         password: hash
         // password: req.body.password -- not encrypted can see passwords in the database not secure
       });
-      user.save()
-        .then(result => {
-          res.status(201).json({
-            message: 'user is created!',
-            result: result
-          });
-        })
+      user.save().then(result => {
+        res.status(201).json({
+          message: 'user is created!',
+          result: result
+        });
+      })
         .catch(err => {
           res.status(500).json({
             message: 'Invalid Auth Credentials'
@@ -25,7 +24,9 @@ exports.createUser = (req, res, next) => {
         });
     });
 }
+// END OF CREATING AN ACCOUNT
 
+// START OF USER LOGIN
 exports.userLogin = (req, res, next) => {
   let fetchedUser;
   //trying to find if user exists
@@ -49,7 +50,6 @@ exports.userLogin = (req, res, next) => {
       const token = jwt.sign({email: fetchedUser.email, userId: fetchedUser._id},
         "secret_for_me_on_server",
         {expiresIn: "1h"}
-
       );
       res.status(200).json({
         token: token,
@@ -62,5 +62,5 @@ exports.userLogin = (req, res, next) => {
         message: 'Invalid Auth Credentials',
       });
     });
-
 }
+// END OF USER LOGIN
