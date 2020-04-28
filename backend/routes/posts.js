@@ -12,6 +12,7 @@ router.post("", checkAuth, extractFile, PostController.createPost);
 // /api/posts/:id - EDITING A POST
 router.put("/:id", checkAuth, extractFile, PostController.updatePost);
 
+
 // /api/posts - GETTING ALL POSTS
 router.get('', PostController.getPosts);
 

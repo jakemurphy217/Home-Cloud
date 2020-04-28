@@ -87,7 +87,7 @@ export class PostCreateComponent implements OnInit, OnDestroy{
     this.form.patchValue({upload: file});
     this.form.get('upload').updateValueAndValidity();
     // console.log(file.name, file.size, file.type);
-    // console.log(this.form);
+    console.log(this.form);
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = (reader.result as string);

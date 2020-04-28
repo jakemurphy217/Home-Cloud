@@ -143,3 +143,8 @@ exports.deletePost = (req, res, next) => {
 // END OF DELETING A POST
 
 
+// START OF DOWNLOAD POST
+
+
+
+

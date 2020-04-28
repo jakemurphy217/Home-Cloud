@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 // CREATING AN ACCOUNT
@@ -48,7 +48,7 @@ exports.userLogin = (req, res, next) => {
       }
       //creating a web token
       const token = jwt.sign({email: fetchedUser.email, userId: fetchedUser._id},
-        "secret_for_me_on_server",
+        process.env.JWT_KEY,
         {expiresIn: "1h"}
       );
       res.status(200).json({
