@@ -1,41 +1,77 @@
-
 <mat-spinner *ngIf="Loading"></mat-spinner>
+
+<div class="homecardwrapper">
+<mat-card class="homecard">
+  <mat-card-title>
+    Home Cloud
+  </mat-card-title>
+
+  <mat-card-content>
+    this is my home cloud project
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-flat-button>Github</button>
+  </mat-card-actions>
+</mat-card>
+
+</div>
+
+<!--<form class="example-form">-->
+<!--  <mat-form-field class="example-full-width">-->
+<!--    <mat-label>Assignee</mat-label>-->
+<!--    <input type="text" matInput >-->
+
+
+<!--  </mat-form-field>-->
+<!--</form>-->
+
 <mat-accordion multi="true" *ngIf="posts.length>0 && !Loading">
+
+
+
+
+
 
   <mat-expansion-panel *ngFor="let post of posts">
 
     <mat-expansion-panel-header>
 
-      {{post.title}}
+      <mat-panel-title>
+        <h4>{{post.title}}</h4>
+      </mat-panel-title>
+      <mat-panel-description>
+       <h5>Post ID:{{post.id}}</h5>
+      </mat-panel-description>
+
 
     </mat-expansion-panel-header>
 
     <div class="post-file">
 
-<!--      <img [src]="post.filePath" [alt]="post.title">-->
+            <img [src]="post.filePath "  [alt]="post.title">
 
-<!--      <p> {{post.creator}}</p>-->
+      <!--      <p> {{post.creator}}</p>-->
       <H1> {{post.content}}</H1>
       <p> {{post.filePath}}</p>
-<!--      <p>File Name: {{post.value.upload.name}}</p>-->
-<!--      <p>File Size: {{form.value.upload.size}} Bytes</p>-->
-<!--      <p>File Type: {{form.value.upload.type}}</p>-->
+      <!--      <p>File Name: {{post.value.upload.name}}</p>-->
+      <!--      <p>File Size: {{form.value.upload.size}} Bytes</p>-->
+      <!--      <p>File Type: {{form.value.upload.type}}</p>-->
     </div>
 
-<!--    <p>{{post.content}} </p>-->
-
-
+    <!--    <p>{{post.content}} </p>-->
 
 
     <mat-action-row *ngIf="userIsAuthenticated && userId === post.creator">
-      <a mat-button color="primary" [routerLink]="" >Download</a>
-      <a mat-button color="primary" [routerLink]="['/edit', post.id]" >Edit</a>
-      <a mat-button color="warn" (click)="onDelete(post.id)" >Delete</a>
+      <a mat-button color="primary" [routerLink]="">Download</a>
+      <a mat-button color="primary" [routerLink]="['/edit', post.id]">Edit</a>
+      <a mat-button color="warn" (click)="onDelete(post.id)">Delete</a>
     </mat-action-row>
 
   </mat-expansion-panel>
 
 </mat-accordion>
+
 <mat-paginator [length]="totalPosts"
                [pageSize]="postsPerPage"
                [pageSizeOptions]="pageSizeOption"

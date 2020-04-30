@@ -11,6 +11,8 @@ import {HeaderComponent} from './header/header.component';
 import {ErrorComponent} from './error/error.component';
 import {AngularMaterialModule} from './angular-material.module';
 import {PostsModule} from './posts/posts.module';
+import {footerComponent} from './footer/footer.component';
+import {homeCardComponent} from './homeCard/homeCard.component';
 
 
 
@@ -18,7 +20,9 @@ import {PostsModule} from './posts/posts.module';
   declarations: [
     AppComponent,
     HeaderComponent,
-    ErrorComponent
+    ErrorComponent,
+    footerComponent,
+    homeCardComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,7 @@ import {PostsModule} from './posts/posts.module';
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
   ],
   bootstrap: [AppComponent],
-  entryComponents:[ErrorComponent]
+  entryComponents: [ErrorComponent]
 })
 export class AppModule {
 }

@@ -28,6 +28,8 @@ export class PostListComponent implements OnInit, OnDestroy {
   private authStatusSub: Subscription;
   userIsAuthenticated = false;
   userId: string;
+  @Input() src: string;
+  @Input() default
 
   constructor(public postsService: PostsService,
               private authService: AuthService) {
@@ -74,6 +76,10 @@ export class PostListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.postsSub.unsubscribe();
     this.authStatusSub.unsubscribe();
+  }
+
+  notAnImg(event){
+    event.target.src = 'src/app/defaultImg/default.png';
   }
 
 }

@@ -16,9 +16,26 @@ mat-spinner{
 
 .post-file img{
   width:100%;
+  height: 300px;
 
 }
 
 mat-paginator{
   margin-top:1rem ;
 }
+
+.homecard{
+
+  background-color: #8c8d95;
+  text-align: center;
+  /*padding: 10%;*/
+  width: 100% !important;
+  margin-bottom:2rem ;
+}
+.homecardwrapper{
+  width: 100%;
+}
+
+
+
+

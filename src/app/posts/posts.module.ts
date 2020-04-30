@@ -6,6 +6,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {PostCreateComponent} from './post-create/post-create.component';
 import {PostListComponent} from './post-list/post-list.component';
 import {AngularMaterialModule} from '../angular-material.module';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {AngularMaterialModule} from '../angular-material.module';
     CommonModule,
     ReactiveFormsModule,
     AngularMaterialModule,
-    RouterModule
+    RouterModule,
+    MatAutocompleteModule
   ]
 })
 export class PostsModule {}
