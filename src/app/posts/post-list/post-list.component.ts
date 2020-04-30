@@ -4,7 +4,8 @@ import {Subscription} from 'rxjs';
 import {PostsService} from '../post.service';
 import {PageEvent} from '@angular/material/paginator';
 import {AuthService} from '../../auth/auth.service';
-
+import { saveAs } from 'file-saver';
+import {FileSaverService} from 'ngx-filesaver';
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
@@ -29,10 +30,12 @@ export class PostListComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   userId: string;
   @Input() src: string;
-  @Input() default
+  @Input() default;
+
 
   constructor(public postsService: PostsService,
-              private authService: AuthService) {
+              private authService: AuthService,
+               ) {
   }
 
   ngOnInit() {
@@ -78,8 +81,20 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.authStatusSub.unsubscribe();
   }
 
-  notAnImg(event){
-    event.target.src = 'src/app/defaultImg/default.png';
-  }
+
+  // notAnImg(event){
+  //   event.target.src = 'src/app/defaultImg/default.png';
+  // }
+
+  // OnDownloadFile() {
+  //   this.http.get('./uploads/hello--1588084357063.png', {responseType: 'arraybuffer'}).subscribe(png => {
+  //     const blob = new Blob([png], {type: 'image/png'});
+  //     const fileName = 'test.png';
+  //     saveAs(blob, fileName);
+  //   }, error => {
+  //     console.log(error);
+  //   });
+  // }
+
 
 }

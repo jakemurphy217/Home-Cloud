@@ -13,6 +13,7 @@ import {AngularMaterialModule} from './angular-material.module';
 import {PostsModule} from './posts/posts.module';
 import {footerComponent} from './footer/footer.component';
 import {homeCardComponent} from './homeCard/homeCard.component';
+import {FileSaverModule} from 'ngx-filesaver';
 
 
 
@@ -30,7 +31,8 @@ import {homeCardComponent} from './homeCard/homeCard.component';
     BrowserAnimationsModule,
     HttpClientModule,
     AngularMaterialModule,
-    PostsModule
+    PostsModule,
+    FileSaverModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

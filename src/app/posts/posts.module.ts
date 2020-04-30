@@ -7,6 +7,8 @@ import {PostCreateComponent} from './post-create/post-create.component';
 import {PostListComponent} from './post-list/post-list.component';
 import {AngularMaterialModule} from '../angular-material.module';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {FileSaverModule} from 'ngx-filesaver';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     ReactiveFormsModule,
     AngularMaterialModule,
     RouterModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    FileSaverModule,
+    MatIconModule
   ]
 })
 export class PostsModule {}

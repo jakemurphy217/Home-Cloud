@@ -1,7 +1,7 @@
 <!-- <h1>i am the post create component</h1> -->
 
 
-<mat-card>
+<mat-card class="CreateCard">
  <mat-spinner *ngIf="Loading"></mat-spinner>
   <form [formGroup]="form" (submit)="onSavePost()" *ngIf="!Loading">
 

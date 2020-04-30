@@ -145,6 +145,20 @@ exports.deletePost = (req, res, next) => {
 
 // START OF DOWNLOAD POST
 
-
+exports.downloadPost = (req, res, next) => {
+  // filepath = path.join(__dirname, './backend/uploads') + '/' + req.file.filename;
+  Post.findById(req.params.id).then(post => {
+    if (post) {
+      res.status(200).json(post)
+    } else {
+      res.status(404).json({message: 'Post Not Fond!!! :/ '});
+    }
+  })
+    .catch(error => {
+      res.status(500).json({
+        message: 'Downloading Post Failed!'
+      });
+    });
+}
 
 

@@ -5,3 +5,10 @@ mat-form-field{
 mat-spinner{
   margin: auto;
 }
+.LoginForm{
+
+}
+.LoginCard{
+  margin-top: 8rem;
+  border: black;
+}

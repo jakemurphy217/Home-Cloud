@@ -1,10 +1,11 @@
 import {Post} from './post.model';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {environment} from '../../environments/environment';
+// import 'rxjs/Rx';
 
 const BACKEND_URL = environment.apiURL + '/posts/';
 
@@ -103,4 +104,15 @@ export class PostsService {
     return this.http.delete(BACKEND_URL + postId);
 
   }
+
+
+
+    // const body = {fileName: file};
+    //
+    // return this.http.post(BACKEND_URL + 'download', body, {
+    //  responseType: 'blob',
+    //  headers: new HttpHeaders().append('Content-Type', 'application/json')
+    // });
+
+
 }

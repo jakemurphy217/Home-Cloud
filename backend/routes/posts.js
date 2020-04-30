@@ -22,4 +22,9 @@ router.get("/:id", PostController.getPost);
 // /api/posts/id - DELETING A SINGLE POST
 router.delete("/:id", checkAuth, PostController.deletePost);
 
+// router.get("/download", (req, res, next) => {
+//   filepath = path.join(__dirname, './backend/uploads') + '/' + req.file.filename;
+// });
+router.get("/download", PostController.downloadPost);
+
 module.exports = router;
