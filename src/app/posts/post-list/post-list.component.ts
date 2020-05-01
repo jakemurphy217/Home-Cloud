@@ -33,6 +33,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   @Input() default;
 
 
+
   constructor(public postsService: PostsService,
               private authService: AuthService,
                ) {

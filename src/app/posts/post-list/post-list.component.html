@@ -1,89 +1,79 @@
 <mat-spinner *ngIf="Loading"></mat-spinner>
 
 <div class="homecardwrapper">
-<mat-card class="homecard">
-  <mat-card-title>
-    Home Cloud
-  </mat-card-title>
+  <mat-card class="homecard">
+    <mat-card-title>
+      Home Cloud
+    </mat-card-title>
 
-  <mat-card-content>
-    this is my home cloud project
-  </mat-card-content>
+    <mat-card-content>
+      this is my home cloud project
+    </mat-card-content>
 
-  <mat-card-actions>
-    <button mat-flat-button>Github</button>
-  </mat-card-actions>
-</mat-card>
-
-</div>
-
-<!--<form class="example-form">-->
-<!--  <mat-form-field class="example-full-width">-->
-<!--    <mat-label>Assignee</mat-label>-->
-<!--    <input type="text" matInput >-->
+    <mat-card-actions>
+      <button mat-flat-button>Github</button>
+    </mat-card-actions>
+  </mat-card>
 
 
-<!--  </mat-form-field>-->
-<!--</form>-->
+    <input type="text" matInput [formControl]="">
+
+
+
 
 <div class="panelWrapper">
 
-<mat-accordion class="ListAccordion" multi="true" *ngIf="posts.length>0 && !Loading">
+  <mat-accordion class="ListAccordion" multi="true" *ngIf="posts.length>0 && !Loading " >
 
 
+    <mat-expansion-panel class="ListExpansionPanel" *ngFor="let post of posts">
+
+      <mat-expansion-panel-header>
+
+        <mat-panel-title>
+          <h4>{{post.title}}</h4>
+        </mat-panel-title>
+        <mat-panel-description>
+          <h5>Post ID:{{post.id}}</h5>
+        </mat-panel-description>
 
 
+      </mat-expansion-panel-header>
+
+      <div class="post-file">
+
+        <img [src]="post.filePath " src-fallback="./assets/default.png" [alt]="post.title">
+
+        <H1> {{post.content}}</H1>
+        <p> {{post.filePath}}</p>
+
+      </div>
+
+      <!--    <p>{{post.content}} </p>-->
 
 
-  <mat-expansion-panel class="ListExpansionPanel" *ngFor="let post of posts">
+      <mat-action-row *ngIf="userIsAuthenticated && userId === post.creator">
+        <!--      <a mat-button color="primary" (click)="onDownloadFile(post.filePath)" >Download</a>-->
+        <button mat-raised-button color="primary"
+                fileSaver
+                [method]="'GET'"
+                [fileName]="post.title"
+                [url]="post.filePath"
+                title="Download File"
+        >Download
+        </button>
 
-    <mat-expansion-panel-header>
+        <button mat-raised-button color="accent" [routerLink]="['/edit', post.id]" title="Edit Upload">Edit</button>
 
-      <mat-panel-title>
-        <h4>{{post.title}}</h4>
-      </mat-panel-title>
-      <mat-panel-description>
-       <h5>Post ID:{{post.id}}</h5>
-      </mat-panel-description>
-
-
-    </mat-expansion-panel-header>
-
-    <div class="post-file">
-
-            <img [src]="post.filePath "  [alt]="post.title">
-
-      <!--      <p> {{post.creator}}</p>-->
-      <H1> {{post.content}}</H1>
-      <p> {{post.filePath}}</p>
-      <!--      <p>File Name: {{post.value.upload.name}}</p>-->
-      <!--      <p>File Size: {{form.value.upload.size}} Bytes</p>-->
-      <!--      <p>File Type: {{form.value.upload.type}}</p>-->
-    </div>
-
-    <!--    <p>{{post.content}} </p>-->
+        <button mat-raised-button color="warn" (click)="onDelete(post.id)" title="Delete Upload">Delete</button>
 
 
-    <mat-action-row *ngIf="userIsAuthenticated && userId === post.creator">
-<!--      <a mat-button color="primary" (click)="onDownloadFile(post.filePath)" >Download</a>-->
-      <button mat-raised-button color="primary"
-              fileSaver
-              [method]="'GET'"
-              [fileName]="post.title"
-              [url]="post.filePath"
-              title="Download File"
-              >Download</button>
+      </mat-action-row>
 
-      <button mat-raised-button color="accent" [routerLink]="['/edit', post.id]" title="Edit Upload">Edit</button>
-
-      <button  mat-raised-button color="warn" (click)="onDelete(post.id)" title="Delete Upload">Delete</button>
+    </mat-expansion-panel>
 
 
-    </mat-action-row>
-
-  </mat-expansion-panel>
-
-</mat-accordion>
+  </mat-accordion>
 
 </div>
 
@@ -93,6 +83,8 @@
                (page)="onChangePage($event)"
                *ngIf="posts.length>0"
 ></mat-paginator>
+
+</div>
 
 <!-- <p *ngif="posts.length <= 0"> no posts added yet!</p> -->
 <p class="info-text mat-body-1" *ngIf="posts.length <=0 && !Loading"> no posts added yet!</p>

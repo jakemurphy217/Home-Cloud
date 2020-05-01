@@ -14,6 +14,7 @@ import {PostsModule} from './posts/posts.module';
 import {footerComponent} from './footer/footer.component';
 import {homeCardComponent} from './homeCard/homeCard.component';
 import {FileSaverModule} from 'ngx-filesaver';
+import {ImgFallbackModule} from 'ngx-img-fallback';
 
 
 
@@ -32,7 +33,8 @@ import {FileSaverModule} from 'ngx-filesaver';
     HttpClientModule,
     AngularMaterialModule,
     PostsModule,
-    FileSaverModule
+    FileSaverModule,
+    ImgFallbackModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

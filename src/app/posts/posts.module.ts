@@ -9,6 +9,7 @@ import {AngularMaterialModule} from '../angular-material.module';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {FileSaverModule} from 'ngx-filesaver';
 import {MatIconModule} from '@angular/material/icon';
+import {ImgFallbackModule} from 'ngx-img-fallback';
 
 
 @NgModule({
@@ -16,14 +17,15 @@ import {MatIconModule} from '@angular/material/icon';
     PostCreateComponent,
     PostListComponent
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    AngularMaterialModule,
-    RouterModule,
-    MatAutocompleteModule,
-    FileSaverModule,
-    MatIconModule
-  ]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        AngularMaterialModule,
+        RouterModule,
+        MatAutocompleteModule,
+        FileSaverModule,
+        MatIconModule,
+        ImgFallbackModule
+    ]
 })
 export class PostsModule {}
