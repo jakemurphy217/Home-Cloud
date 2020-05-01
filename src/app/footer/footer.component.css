@@ -1,9 +1,9 @@
 footer{
-
   position:fixed;
-  bottom:0px;
+  bottom:0;
   background-color: #8c8d95;
   width:100%;
   text-align: center;
+  overflow: hidden;
 
 }

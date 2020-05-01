@@ -36,6 +36,19 @@ mat-paginator{
   width: 100%;
 }
 
+.ListAccordion{
+  /*width: 50%;*/
+  text-align: center;
+}
 
+.ListExpansionPanel{
+  width: 50%;
+  text-align: center;
+  display: inline-block;
+}
 
+.panelWrapper{
+  /*justify-content: center;*/
+  text-align: center;
+}
 

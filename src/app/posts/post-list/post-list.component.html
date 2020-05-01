@@ -26,14 +26,16 @@
 <!--  </mat-form-field>-->
 <!--</form>-->
 
-<mat-accordion multi="true" *ngIf="posts.length>0 && !Loading">
+<div class="panelWrapper">
+
+<mat-accordion class="ListAccordion" multi="true" *ngIf="posts.length>0 && !Loading">
 
 
 
 
 
 
-  <mat-expansion-panel *ngFor="let post of posts">
+  <mat-expansion-panel class="ListExpansionPanel" *ngFor="let post of posts">
 
     <mat-expansion-panel-header>
 
@@ -82,6 +84,8 @@
   </mat-expansion-panel>
 
 </mat-accordion>
+
+</div>
 
 <mat-paginator [length]="totalPosts"
                [pageSize]="postsPerPage"
