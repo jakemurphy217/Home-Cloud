@@ -17,3 +17,7 @@ ul{
 ul{
   display: flex;
 }
+.headerLogo{
+background-color: red;
+  /*background-color: transparent;*/
+}

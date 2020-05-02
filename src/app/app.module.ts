@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
@@ -34,7 +34,7 @@ import {ImgFallbackModule} from 'ngx-img-fallback';
     AngularMaterialModule,
     PostsModule,
     FileSaverModule,
-    ImgFallbackModule
+    ImgFallbackModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

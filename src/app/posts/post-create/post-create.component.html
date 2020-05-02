@@ -1,6 +1,20 @@
 <!-- <h1>i am the post create component</h1> -->
 
+<div class="createCardWrapper">
 
+  <mat-card class="CreateCardTop">
+    <mat-card-title>
+      Upload Some Content!
+    </mat-card-title>
+
+      <mat-card-content>
+      upload your content and store them on the cloud!
+      </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-flat-button color="primary" routerLink="/">Uploaded files</button>
+    </mat-card-actions>
+  </mat-card>
 <mat-card class="CreateCard">
  <mat-spinner *ngIf="Loading"></mat-spinner>
   <form [formGroup]="form" (submit)="onSavePost()" *ngIf="!Loading">
@@ -18,15 +32,15 @@
       <input type="file" #filePicker (change)="onFilePicked($event)">
     </div>
 
-<!--    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">-->
-<!--      <img [src]="imagePreview" [alt]="form.value.title">-->
-<!--    </div>-->
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+      <img [src]="imagePreview" [alt]="form.value.title" src-fallback="./assets/default.png">
+    </div>
 
     <div *ngIf="imagePreview">
 
-      <p>File Name: {{form.value.upload.name}}</p>
-      <p>File Size: {{form.value.upload.size}} Bytes</p>
-      <p>File Type: {{form.value.upload.type}}</p>
+      <p class="mat-body-2"> <u>File Name:</u> {{form.value.upload.name}}</p>
+      <p class="mat-body-2"> <u>File Size:</u> {{form.value.upload.size}} Bytes</p>
+      <p class="mat-body-2"> <u>File Type:</u> {{form.value.upload.type}}</p>
 
     </div>
 
@@ -46,3 +60,6 @@
   </form>
 
 </mat-card>
+
+
+</div>

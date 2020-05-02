@@ -21,5 +21,12 @@ input[type="file"]{
 }
 
 .CreateCard{
-  margin-top: 8rem;
+  margin-top: 5rem;
+  width: 75%;
+  text-align: left;
+
+}
+
+.createCardWrapper{
+  text-align: -webkit-center;
 }

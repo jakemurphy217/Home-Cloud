@@ -10,6 +10,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {FileSaverModule} from 'ngx-filesaver';
 import {MatIconModule} from '@angular/material/icon';
 import {ImgFallbackModule} from 'ngx-img-fallback';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {ImgFallbackModule} from 'ngx-img-fallback';
         MatAutocompleteModule,
         FileSaverModule,
         MatIconModule,
-        ImgFallbackModule
+        ImgFallbackModule,
+      HttpClientModule
     ]
 })
 export class PostsModule {}
