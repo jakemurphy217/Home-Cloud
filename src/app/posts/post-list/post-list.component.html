@@ -1,45 +1,58 @@
+<!--Loading spinner-->
 <mat-spinner *ngIf="Loading"></mat-spinner>
 
+<!--wrapper div for the home card-->
 <div class="homecardwrapper">
+
   <mat-card class="homecard">
+
     <mat-card-title>
       Home Cloud
     </mat-card-title>
 
-    <mat-card-content>
-      this is my home cloud project
-    </mat-card-content>
+      <mat-card-content>
+        this is my home cloud project
+      </mat-card-content>
 
-    <mat-card-actions>
-      <button mat-flat-button>Github</button>
-    </mat-card-actions>
+        <mat-card-actions>
+        <button mat-flat-button>Github</button>
+         </mat-card-actions>
+
   </mat-card>
+
+<!--  end of home card wrapper-->
 
 
     <input type="text" matInput [formControl]="">
-
-
-
 
 <div class="panelWrapper">
 
   <mat-accordion class="ListAccordion" multi="true" *ngIf="posts.length>0 && !Loading " >
 
-
+<!--    card expansion panel-->
     <mat-expansion-panel class="ListExpansionPanel" *ngFor="let post of posts">
 
+<!--      card header -->
       <mat-expansion-panel-header>
 
+<!--        title-->
         <mat-panel-title>
+
           <h4>{{post.title}}</h4>
+
         </mat-panel-title>
+
+<!--        post id-->
         <mat-panel-description>
+
           <h5>Post ID:{{post.id}}</h5>
+
         </mat-panel-description>
 
 
       </mat-expansion-panel-header>
 
+<!--      displaying image-->
       <div class="post-file">
 
         <img [src]="post.filePath " src-fallback="./assets/default.png" [alt]="post.title">
@@ -48,23 +61,21 @@
         <p> {{post.filePath}}</p>
 
       </div>
-
-      <!--    <p>{{post.content}} </p>-->
-
-
+<!--      button row edit update and delete-->
       <mat-action-row *ngIf="userIsAuthenticated && userId === post.creator">
-        <!--      <a mat-button color="primary" (click)="onDownloadFile(post.filePath)" >Download</a>-->
+
+<!--        downland-->
         <button mat-raised-button color="primary"
                 fileSaver
                 [method]="'GET'"
                 [fileName]="post.title"
                 [url]="post.filePath"
-                title="Download File"
-        >Download
-        </button>
+                title="Download File">Download </button>
 
+<!--        edit-->
         <button mat-raised-button color="accent" [routerLink]="['/edit', post.id]" title="Edit Upload">Edit</button>
 
+<!--        delete-->
         <button mat-raised-button color="warn" (click)="onDelete(post.id)" title="Delete Upload">Delete</button>
 
 
@@ -72,21 +83,25 @@
 
     </mat-expansion-panel>
 
+<!--    end of expansion panel-->
+
 
   </mat-accordion>
 
 </div>
 
-<mat-paginator [length]="totalPosts"
+  <div class="paginatorWrapper">
+
+<mat-paginator class="listPaginator" [length]="totalPosts"
                [pageSize]="postsPerPage"
                [pageSizeOptions]="pageSizeOption"
                (page)="onChangePage($event)"
-               *ngIf="posts.length>0"
-></mat-paginator>
+               *ngIf="posts.length>0"></mat-paginator>
+  </div>
 
 </div>
 
-<!-- <p *ngif="posts.length <= 0"> no posts added yet!</p> -->
+
 <p class="info-text mat-body-1" *ngIf="posts.length <=0 && !Loading"> no posts added yet!</p>
 
 

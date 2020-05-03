@@ -29,8 +29,8 @@ export class PostListComponent implements OnInit, OnDestroy {
   private authStatusSub: Subscription;
   userIsAuthenticated = false;
   userId: string;
-  @Input() src: string;
-  @Input() default;
+  searchData: Array<object> = this.posts;
+
 
 
 
@@ -81,6 +81,7 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postsSub.unsubscribe();
     this.authStatusSub.unsubscribe();
   }
+
 
 
   // notAnImg(event){

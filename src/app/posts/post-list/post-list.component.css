@@ -52,3 +52,18 @@ mat-paginator{
   text-align: center;
 }
 
+.paginatorWrapper{
+  /*position: absolute;*/
+  /*text-align: right;*/
+ bottom: 0;
+}
+
+
+.listPaginator{
+  /*bottom: 0;*/
+  text-align: right;
+  margin-bottom: 70px;
+}
+
+
+

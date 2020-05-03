@@ -11,4 +11,10 @@ mat-spinner{
 .LoginCard{
   margin-top: 8rem;
   border: black;
+  width:75%;
+  text-align: left;
+}
+
+.loginCardWrapper{
+  text-align: -webkit-center;
 }

@@ -8,4 +8,10 @@ mat-spinner{
 
 .signupCard{
   margin-top: 8rem;
+  width: 75%;
+  text-align: left;
+}
+
+.signupCardWrapper{
+  text-align: -webkit-center;
 }

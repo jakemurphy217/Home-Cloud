@@ -1,3 +1,5 @@
+<div class="signupCardWrapper">
+
 <mat-card class="signupCard">
   <mat-spinner *ngIf="Loading"></mat-spinner>
   <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!Loading">
@@ -36,3 +38,4 @@
 
   </form>
 </mat-card>
+</div>
