@@ -11,10 +11,10 @@ import {AuthService} from './auth/auth.service';
 export class AppComponent implements OnInit{
   title = 'Home-Cloud';
 
-  constructor(private authService: AuthService) {
+  constructor(public authService: AuthService) {
   }
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.authService.autoAuthUser();
   }
 

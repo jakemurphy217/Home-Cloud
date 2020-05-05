@@ -6,6 +6,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
   templateUrl: './error.component.html'
 })
 export class ErrorComponent {
+  title = 'Error';
 
   // message = 'Unknown Error Occurred';
   constructor(@Inject(MAT_DIALOG_DATA) public data: {message: string}) {

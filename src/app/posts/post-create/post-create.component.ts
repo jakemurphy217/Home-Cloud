@@ -24,6 +24,7 @@ export class PostCreateComponent implements OnInit, OnDestroy{
   Loading = false;
   form: FormGroup;
   imagePreview: string;
+  title = 'PostCreate';
 
   constructor(public postsService: PostsService,
               public route: ActivatedRoute,
@@ -94,6 +95,10 @@ export class PostCreateComponent implements OnInit, OnDestroy{
     };
     reader.readAsDataURL(file);
   }
+
+
+
+
 
   onSavePost() {
 

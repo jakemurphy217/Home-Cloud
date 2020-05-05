@@ -30,6 +30,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   userId: string;
   searchData: Array<object> = this.posts;
+  title = 'PostList';
 
 
 

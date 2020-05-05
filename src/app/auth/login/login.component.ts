@@ -11,6 +11,7 @@ import {Subscription} from 'rxjs';
 export class LoginComponent implements OnInit, OnDestroy {
   Loading = false;
   private authStatusSub: Subscription;
+  title = 'Login';
 
   constructor(public authService: AuthService) {
   }

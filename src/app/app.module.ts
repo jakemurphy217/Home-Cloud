@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
@@ -11,10 +12,11 @@ import {HeaderComponent} from './header/header.component';
 import {ErrorComponent} from './error/error.component';
 import {AngularMaterialModule} from './angular-material.module';
 import {PostsModule} from './posts/posts.module';
-import {footerComponent} from './footer/footer.component';
+import {FooterComponent} from './footer/footer.component';
 import {homeCardComponent} from './homeCard/homeCard.component';
 import {FileSaverModule} from 'ngx-filesaver';
 import {ImgFallbackModule} from 'ngx-img-fallback';
+import {NgxDropzoneModule} from 'ngx-dropzone';
 
 
 
@@ -23,7 +25,7 @@ import {ImgFallbackModule} from 'ngx-img-fallback';
     AppComponent,
     HeaderComponent,
     ErrorComponent,
-    footerComponent,
+    FooterComponent,
     homeCardComponent
   ],
   imports: [
@@ -35,6 +37,7 @@ import {ImgFallbackModule} from 'ngx-img-fallback';
     PostsModule,
     FileSaverModule,
     ImgFallbackModule,
+    NgxDropzoneModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

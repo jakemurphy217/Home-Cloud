@@ -11,6 +11,7 @@ import {FileSaverModule} from 'ngx-filesaver';
 import {MatIconModule} from '@angular/material/icon';
 import {ImgFallbackModule} from 'ngx-img-fallback';
 import {HttpClientModule} from '@angular/common/http';
+import {NgxDropzoneModule} from 'ngx-dropzone';
 
 
 @NgModule({
@@ -18,16 +19,17 @@ import {HttpClientModule} from '@angular/common/http';
     PostCreateComponent,
     PostListComponent
   ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        AngularMaterialModule,
-        RouterModule,
-        MatAutocompleteModule,
-        FileSaverModule,
-        MatIconModule,
-        ImgFallbackModule,
-      HttpClientModule
-    ]
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    AngularMaterialModule,
+    RouterModule,
+    MatAutocompleteModule,
+    FileSaverModule,
+    MatIconModule,
+    ImgFallbackModule,
+    HttpClientModule,
+    NgxDropzoneModule
+  ]
 })
 export class PostsModule {}
