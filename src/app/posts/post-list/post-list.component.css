@@ -29,8 +29,12 @@ mat-paginator{
   background-color: #8c8d95;
   text-align: center;
   /*padding: 10%;*/
-  width: 100% !important;
+  width: 100%;
   margin-bottom:2rem ;
+  color: black;
+  /*color: white;*/
+  background-image: -webkit-linear-gradient(60deg, #F0FFF0 50%, #10cdae 50%);
+
 }
 .homecardwrapper{
   width: 100%;
@@ -42,9 +46,10 @@ mat-paginator{
 }
 
 .ListExpansionPanel{
-  width: 55%;
+  width: 65%;
   text-align: center;
   display: inline-block;
+  background-color: #F0FFF0;
 }
 
 .panelWrapper{
@@ -53,9 +58,7 @@ mat-paginator{
 }
 
 .paginatorWrapper{
-  /*position: absolute;*/
-  /*text-align: right;*/
- bottom: 0;
+
 }
 
 
@@ -63,6 +66,7 @@ mat-paginator{
   /*bottom: 0;*/
   text-align: right;
   margin-bottom: 70px;
+  background-color: #F5F5F5;
 }
 
 

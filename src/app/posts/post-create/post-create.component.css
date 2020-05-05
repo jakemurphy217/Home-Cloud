@@ -29,4 +29,9 @@ input[type="file"]{
 
 .createCardWrapper{
   text-align: -webkit-center;
+
+}
+.CreateCardTop{
+  background-image: -webkit-linear-gradient(60deg, #F0FFF0 50%, #10cdae 50%);
+
 }

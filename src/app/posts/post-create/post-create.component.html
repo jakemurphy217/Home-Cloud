@@ -30,7 +30,7 @@
     </mat-form-field>
 
     <div>
-      <button mat-stroked-button type="button" (click)="filePicker.click()" > Choose File! </button>
+      <button mat-raised-button color="primary" type="button" (click)="filePicker.click()" > Choose File! </button>
       <input type="file" #filePicker (change)="onFilePicked($event)">
 
 <!--      <ngx-dropzone (change)="onSelect($event)">-->

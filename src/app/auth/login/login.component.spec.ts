@@ -5,6 +5,7 @@ import {HeaderComponent} from '../../header/header.component';
 import {FooterComponent} from '../../footer/footer.component';
 import {AppRoutingModule} from '../../app-routing.module';
 import {AngularMaterialModule} from '../../angular-material.module';
+import {AuthService} from '../auth.service';
 
 describe('LoginComponent', () => {
   beforeEach(async(() => {
@@ -17,7 +18,7 @@ describe('LoginComponent', () => {
       imports: [
         HttpClientModule,
         AppRoutingModule,
-        AngularMaterialModule
+        AngularMaterialModule,
       ]
     }).compileComponents();
   }));
