@@ -10,6 +10,8 @@ mat-spinner{
   margin-top: 8rem;
   width: 75%;
   text-align: left;
+  background-color:  #f0fff0;
+  color: black;
 }
 
 .signupCardWrapper{

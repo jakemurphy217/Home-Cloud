@@ -2,7 +2,10 @@ const multer = require('multer');
 const path = require('path');
 
 const MIME_TYPE_MAP = {
-  // picture types
+
+  // mimeTypes from the official : https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
+
+  // image types
   'image/png': 'png',
   'image/jpeg': 'jpg',
   'image/jpg': 'jpg',
@@ -14,8 +17,13 @@ const MIME_TYPE_MAP = {
   // audio
   'audio/mpeg': 'mp3',
   //video
+  'video/mp4': 'mp4',
+  'video/x-ms-wmv': 'wmv', //windows media
+  'video/x-msvideo' : 'avi', //A/V interleave
+  'video/quicktime': 'mov', //QuickTime
+  'video/x-flv': 'flv' // flash
 
-};
+ };
 
 const storage = multer.diskStorage({
 
