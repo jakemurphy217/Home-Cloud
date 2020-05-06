@@ -24,15 +24,15 @@ db.on('error', err => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use('/uploads', express.static(path.join('backend/uploads')));
+app.use('/uploads', express.static(path.join(__dirname,'uploads')));
+app.use('/', express.static(path.join(__dirname,'angular')));
+
 
 app.use((req, res, next) => {
 
   res.setHeader("Access-Control-Allow-Origin", "*");
 
-  res.setHeader(
-    "Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"
-  );
+  res.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PUT, DELETE");
 
   res.setHeader("Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept,Authorization"
@@ -40,15 +40,20 @@ app.use((req, res, next) => {
 
   res.setHeader('Access-Control-Allow-Credentials', true);
 
-  app.use(cors());
+  // app.use(cors());
 
   next();
 
 
 });
 
+// app.use(cors());
+
 app.use("/api/posts", postsRoutes);
 app.use("/api/user", userRoutes);
+app.use((req,res,next) => {
+  res.sendFile(path.join(__dirname, "angular", "index.html"))
+});
 
 module.exports = app;
 
