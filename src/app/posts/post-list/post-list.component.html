@@ -11,11 +11,11 @@
     </mat-card-title>
 
       <mat-card-content>
-        this is my home cloud project
+        Cloud application Sign up and login to upload and download your files!!
       </mat-card-content>
 
         <mat-card-actions>
-        <button mat-raised-button color="primary">Github</button>
+        <button mat-raised-button routerLink="/user/signup" color="primary">Sign up</button>
          </mat-card-actions>
 
   </mat-card>
@@ -68,7 +68,8 @@
                 fileSaver
                 [method]="'GET'"
                 [fileName]="post.title"
-                [url]="'token'"
+                [url]="post.filePath"
+                [header] ="{token: 'token'}"
                 title="Download File">Download </button>
 
 <!--        edit-->

@@ -21,3 +21,7 @@ ul{
 background-color: red;
   /*background-color: transparent;*/
 }
+
+.NgNavbar{
+  width: 100% !important;
+}
