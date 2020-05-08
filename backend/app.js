@@ -9,18 +9,27 @@ const userRoutes = require('./routes/user');
 
 const app = express();
 
-const url = 'mongodb://127.0.0.1:27017/Home-Cloud-Project'
-const db = mongoose.connection;
+// const url = 'mongodb://127.0.0.1:27017/Home-Cloud-Project'
+// const db = mongoose.connection;
 
-//local mongoose connection to DB
-mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
-db.once('open', _ => {
-  console.log('Database Connected:', url)
-});
+// //local mongoose connection to DB
+// mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
+// db.once('open', _ => {
+//   console.log('Database Connected:', url)
+// });
+//
+// db.on('error', err => {
+//   console.error('Connection Error', err)
+// });
+// BenI230TTAe8TfnA
 
-db.on('error', err => {
-  console.error('Connection Error', err)
-});
+mongoose.connect("mongodb+srv://JakeM:"+process.env.MONGO_ATLAS_PASSWORD +"@cluster0-rjyp0.mongodb.net/HomeCloud?retryWrites=true&w=majority")
+  .then(() => {
+    console.log('Connected to mongo database!!')
+  })
+  .catch(() => {
+    console.log('Connection to mongo database failed!! ')
+  })
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
