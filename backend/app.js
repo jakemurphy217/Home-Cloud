@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
-const cors = require('cors');
 
 const postsRoutes = require('./routes/posts');
 const userRoutes = require('./routes/user');
@@ -33,8 +32,8 @@ mongoose.connect("mongodb+srv://JakeM:"+process.env.MONGO_ATLAS_PASSWORD +"@clus
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use('/uploads', express.static(path.join(__dirname,'uploads')));
-app.use('/', express.static(path.join(__dirname,'angular')));
+app.use("/uploads", express.static(path.join(__dirname,"uploads")));
+app.use("/", express.static(path.join(__dirname,"angular")));
 
 
 app.use((req, res, next) => {
@@ -49,14 +48,12 @@ app.use((req, res, next) => {
 
   res.setHeader('Access-Control-Allow-Credentials', true);
 
-  // app.use(cors());
 
   next();
 
 
 });
 
-// app.use(cors());
 
 app.use("/api/posts", postsRoutes);
 app.use("/api/user", userRoutes);
