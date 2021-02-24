@@ -1,6 +1,6 @@
-# PersonalWebsite
+# HomeCoud
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
+Final Year Project Building a Angular Web application to upload and save files from a raspberry PI 
 
 ## Development server
 
